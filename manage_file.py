@@ -48,11 +48,11 @@ def upload_image_temp():
     return jsonify(res)
 
 
-@app.route("/delete_docs", methods=['POST'])
+@app.route("/delete_temp_docs", methods=['POST'])
 def delete_docs():
     req_dict = eval(request.data.decode('utf8'))
     filename = req_dict['filename']
-    path = "./static/data/docs/" + filename
+    path = "./static/data/docs/temp/" + filename
     print(path)
     try:
         os.remove(path);
