@@ -15,7 +15,7 @@ CORS(app)
 @app.route("/upload_docs", methods=['POST'])
 def upload_image():
     files = request.files
-    image_path = "./static/data/docs"
+    image_path = "./static/data/docs/uploaded"
     image_name = str(time.time()) + ".docx"
     try:
         os.makedirs(image_path)
@@ -25,7 +25,7 @@ def upload_image():
     for file_name in files:
         files[file_name].save(image_path + "/" + image_name)
     
-    res = {'link': 'http://' + public_ip + ':5005/static/data/images/' + image_name}
+    res = {'link': 'http://' + public_ip + ':5006/static/data/docs/uploaded/' + image_name}
     
     return jsonify(res)
 
@@ -43,7 +43,7 @@ def upload_image_temp():
     for file_name in files:
         files[file_name].save(image_path + "/" + image_name)
 
-    res = {'link': 'http://' + public_ip + ':5005/static/data/images/' + image_name}
+    res = {'link': 'http://' + public_ip + ':5006/static/data/docs/temp/' + image_name}
 
     return jsonify(res)
 
