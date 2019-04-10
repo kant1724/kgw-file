@@ -57,6 +57,7 @@ def delete_docs():
     try:
         os.remove(path);
     except OSError:
+        print(OSError)
         pass
 
     return jsonify('')
