@@ -50,20 +50,15 @@ def upload_image_temp():
 
 @app.route("/delete_docs", methods=['POST'])
 def delete_docs():
-    files = request.files
-    image_path = "./static/data/docs"
-    image_name = str(time.time()) + ".docx"
+    req_dict = eval(request.data.decode('utf8'))
+    filename = req_dict['filename']
+    path = "./static/data/docs/" + filename
     try:
-        os.makedirs(image_path)
+        os.remove(path);
     except OSError:
         pass
 
-    for file_name in files:
-        files[file_name].save(image_path + "/" + image_name)
-
-    res = {'link': 'http://' + public_ip + ':5005/static/data/images/' + image_name}
-
-    return jsonify(res)
+    return jsonify('')
 
 
 @app.route("/")
