@@ -53,6 +53,7 @@ def delete_docs():
     req_dict = eval(request.data.decode('utf8'))
     filename = req_dict['filename']
     path = "./static/data/docs/" + filename
+    print(path)
     try:
         os.remove(path);
     except OSError:
